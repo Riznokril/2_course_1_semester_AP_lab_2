@@ -151,3 +151,4 @@ class Binary_tree:
 
     def delete_all_elements(self):
         self.head = None
+

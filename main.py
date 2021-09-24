@@ -36,7 +36,7 @@ if __name__ == '__main__':
     Tree.add(2)
         
 
-    if Tree.search(2) == False:
+    if Tree.search(5) == False:
         print("There isn't this element")
     else:
         print("There is this element")
@@ -49,3 +49,5 @@ if __name__ == '__main__':
     print(Tree.print_binary_tree())
     print("--------------------------")
 
+    Tree.delete_all_elements()
+    print(Tree.print_binary_tree())
