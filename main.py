@@ -46,7 +46,6 @@ if __name__ == '__main__':
     print("--------------------------")
     Tree.delete(1)
     print("--------------------------")
-    Tree.print_binary_tree()
+    print(Tree.print_binary_tree())
     print("--------------------------")
-    
 
