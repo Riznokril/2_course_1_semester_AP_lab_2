@@ -7,6 +7,13 @@ class Node:
 
 class Binary_tree:
 
+    class Matrix:
+        def __init__(self):
+            self.level = 0
+            self.j = 0
+
+
+
     def __init__(self):
         self.head = None
         
@@ -38,15 +45,11 @@ class Binary_tree:
     def print_children(self, current, arr):
         
         if current.right != None:            
-            arr.append(current.right.data)            
+            arr.append(current.right.data)
+            self.print_children(current.right, arr)                 
         if current.left != None:
             arr.append(current.left.data)
-                    
-        if current.right != None:
-            self.print_children(current.right, arr)
-        if current.left != None:
-            self.print_children(current.left, arr)        
-        
+            self.print_children(current.left, arr)      
     
     def print_binary_tree(self):
         arr = []
@@ -68,23 +71,34 @@ class Binary_tree:
             if current.right == None:
                 current.right = new_Node
                 new_Node.parent = current
-                
+                self.matrix[level][i] = current.data
             else:
                 current = current.right
                 self.add_Node(current, data)
+                i = 2*i + 2
+                level += 1
+                if self.matrix[level] == None:
+                    for j in range((level-1)*2):
+                        self.matrix[level][j] = " "                
         else:
             if current.left == None:
                 current.left = new_Node
                 new_Node.parent = current
-                
+                self.matrix[level][i] = current.data
             else:
                 current = current.left
                 self.add_Node(current, data)
+                i = 2*i + 1
+                level += 1
+                if self.matrix[level][1] == None:
+                    for j in range((level-1)*2):
+                        self.matrix[level][j] = " "
         
 
     def add(self, data):
         if self.head == None:
             self.head = Node(data)
+            self.matrix[1][1] = self.head.data
         else:
             self.add_Node(self.head, data)
     
@@ -151,3 +165,14 @@ class Binary_tree:
 
     def delete_all_elements(self):
         self.head = None
+
+    
+    def count_levels(self):
+        count = 0
+        if self.head == None:
+            return 0 
+        else:
+            current = self.head
+            while current.left and current.right != None:
+                count += 1
+
